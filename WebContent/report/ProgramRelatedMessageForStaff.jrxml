@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Catalogue(TitleWise)" language="groovy" pageWidth="975" pageHeight="595" orientation="Landscape" columnWidth="935" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f9db1f1e-6480-4c66-9983-708b6d044c87">
+	<property name="ireport.zoom" value="1.210000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="banner" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT s.staffProgramNoticeEnteryID,sr.SatffDepartment,sr.StaffName,spn.TeacherName,spn.staffProgramNotice,spn.staffProgramNoticeDate,spn.staffType,
+spn.StaffProgramNoticeID
+
+
+fROM staffprogramnoticeentery s
+
+left join staffregistration sr on sr.staffRegistrationId=s.staffRegistrationId
+left join staffprogramnotice spn on spn.StaffProgramNoticeID=s.StaffProgramNoticeID
+;]]>
+	</queryString>
+	<field name="staffProgramNoticeEnteryID" class="java.lang.Integer"/>
+	<field name="SatffDepartment" class="java.lang.String"/>
+	<field name="StaffName" class="java.lang.String"/>
+	<field name="TeacherName" class="java.lang.String"/>
+	<field name="staffProgramNotice" class="java.lang.String"/>
+	<field name="staffProgramNoticeDate" class="java.lang.String"/>
+	<field name="staffType" class="java.lang.String"/>
+	<field name="StaffProgramNoticeID" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<image>
+				<reportElement uuid="46d6f4fb-848b-494a-bd1f-11c6cbe433a8" x="118" y="0" width="758" height="123"/>
+				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="61438e0e-afd3-4a47-a84f-3d75b7528bfb" x="270" y="0" width="385" height="47"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Program Related Message For Staff]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3d4cfda1-3803-4677-9ecc-a2f46c16ece3" x="404" y="0" width="233" height="61"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Notice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e7b0a32-8afc-4dd9-b1d0-26bbf7ee7ec2" x="166" y="0" width="137" height="61"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Program Notice Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e7b0a32-8afc-4dd9-b1d0-26bbf7ee7ec2" x="304" y="0" width="100" height="61"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Name]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="ac70cbb5-ea78-4b31-878b-4888d2ade38c" x="0" y="0" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="9e7b0a32-8afc-4dd9-b1d0-26bbf7ee7ec2" x="32" y="1" width="134" height="60"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Program Notice ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e7b0a32-8afc-4dd9-b1d0-26bbf7ee7ec2" x="637" y="0" width="100" height="61"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e7b0a32-8afc-4dd9-b1d0-26bbf7ee7ec2" x="737" y="1" width="152" height="60"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Department Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement uuid="544ff22a-7be7-4777-a58d-2dd79ac8c1e5" x="33" y="0" width="134" height="52"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{StaffProgramNoticeID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="14a7317f-86d4-495c-9d1a-1b99f5a55757" x="304" y="0" width="100" height="52"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{StaffName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="198d41fb-bb90-43ef-b5cf-9f8612fad86d" x="405" y="0" width="233" height="52"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{staffProgramNotice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="198d41fb-bb90-43ef-b5cf-9f8612fad86d" x="638" y="0" width="99" height="52"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{staffType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="198d41fb-bb90-43ef-b5cf-9f8612fad86d" x="737" y="0" width="152" height="52"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SatffDepartment}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c8198c47-dba7-4e38-ad76-e63366c52169" x="166" y="0" width="138" height="52"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{staffProgramNoticeDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="44" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

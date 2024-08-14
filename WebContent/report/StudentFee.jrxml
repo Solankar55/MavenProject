@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentFee" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="65190a32-9094-4ee1-9c27-c357e6d2d08e">
+	<property name="ireport.zoom" value="1.2100000000000024"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="StudentID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="AlreadyPaidFees" class="java.lang.String"/>
+	<parameter name="PendingFees" class="java.lang.String"/>
+	<parameter name="banner" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select l.FeePaidID,l.AcademicYear,l.AlreadyPaidFees,l.PaidFees,l.PendingFees,l.totalFee,s.studentFirstName,s.studentLastName,s.studentMiddleName,
+stand.standard,standFee.fee,s.admissionRegId,admissionDate,
+stream.streamName,branch.branchName,sub.subledger,(SELECT max(t.receiptNo) as receiptNo FROM transactiondetails t where t.transactionDetailsId=(SELECT max(l.transactionDetailsId) as transactionDetailsId  FROM ledgerfeepaid l where l.admissionRegId=$P{StudentID}))as receiptNo
+from ledgerfeepaid l
+left join transactiondetails t on t.transactionDetailsId=l.transactionDetailsId
+left join studentadmission s on s.admissionRegId=l.admissionRegId
+left join acadamicyear a on l.AcdemicYearID=a.acadamicYearId
+left join standardmaster stand on stand.standardId=l.standardId
+left join streammaster stream on stream.streamId=l.streamId
+left join branchmaster branch on branch.branchId=l.branchId
+left join standardfeemaster standFee on standFee.acadamicYearId=s.acadamicYearId
+left join subledgermaster sub on standFee.SubLedgerId=sub.SubLedgerId
+where l.admissionRegId=$P{StudentID}
+and standFee.standardId=(SELECT s.standardId FROM studentadmission s where s.admissionRegId=$P{StudentID})
+and standFee.streamId=(SELECT s.streamId FROM studentadmission s where s.admissionRegId=$P{StudentID})
+and standFee.branchId=(SELECT s.branchId FROM studentadmission s where s.admissionRegId=$P{StudentID})
+and l.AcdemicYearID=(SELECT s.acadamicYearId FROM studentadmission s where s.admissionRegId=$P{StudentID})
+group by sub.SubLedgerId]]>
+	</queryString>
+	<field name="FeePaidID" class="java.lang.Integer"/>
+	<field name="AcademicYear" class="java.lang.String"/>
+	<field name="AlreadyPaidFees" class="java.lang.Float"/>
+	<field name="PaidFees" class="java.lang.Float"/>
+	<field name="PendingFees" class="java.lang.Float"/>
+	<field name="totalFee" class="java.lang.Float"/>
+	<field name="studentFirstName" class="java.lang.String"/>
+	<field name="studentLastName" class="java.lang.String"/>
+	<field name="studentMiddleName" class="java.lang.String"/>
+	<field name="standard" class="java.lang.String"/>
+	<field name="fee" class="java.lang.String"/>
+	<field name="admissionRegId" class="java.lang.Integer"/>
+	<field name="admissionDate" class="java.lang.String"/>
+	<field name="streamName" class="java.lang.String"/>
+	<field name="branchName" class="java.lang.String"/>
+	<field name="subledger" class="java.lang.String"/>
+	<field name="receiptNo" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement uuid="6e7ede39-fc00-4bcf-9cc7-21e389a8b641" x="51" y="0" width="471" height="79"/>
+				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="171" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fa85872e-8ad6-4a1e-b1d0-3e44175f35f0" x="149" y="0" width="239" height="23"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[STUDENT FEE RECEIPT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0896e6cc-194f-49e3-8ab3-f946c3236235" x="1" y="39" width="79" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Receipt No. :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="39badf58-8b51-4714-8bdf-224d49d3ec85" x="80" y="39" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{receiptNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e431eb21-e9a7-4d2a-95e1-48d86dba5252" x="283" y="48" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{AcademicYear}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="be838503-0c18-4474-8cbf-dec40b65b799" x="452" y="39" width="103" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6ef67bd8-d132-443b-875c-b6e52deb4560" x="388" y="39" width="64" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Receipt Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="010cb3f1-b848-46d3-8f2e-7674d2258afe" x="183" y="48" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Academic Year : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b2788c44-e3c9-4995-b428-c4e40263fe52" x="80" y="63" width="100" height="15"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{admissionRegId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0896e6cc-194f-49e3-8ab3-f946c3236235" x="1" y="63" width="79" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Student Ad.No. :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c43fb8c2-7eb9-42c1-802e-a0583bfbea34" x="80" y="90" width="268" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{studentLastName}+" "+$F{studentFirstName}+" "+$F{studentMiddleName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="739c1bae-e549-4568-b065-06bf54e28bca" x="2" y="90" width="78" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Student Name :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f8ba00bb-9e1b-4d28-978d-fd482384bd3c" x="455" y="70" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{admissionDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d8c7fb73-dc59-4622-a153-0ff0cb8cd8b7" x="367" y="70" width="88" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Admission Date :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f1b601d3-3250-477e-8e6d-16e9f3746115" x="455" y="92" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{standard}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ba7ce341-5075-4983-bace-a421c2cb51b5" x="367" y="92" width="88" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Standard :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d2c878ec-9fb3-454b-8312-9e90ef2211f7" x="367" y="151" width="90" height="20"/>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0546ad82-d73f-458c-b3a4-50739454fb85" x="132" y="151" width="235" height="20"/>
+				<box leftPadding="10">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Particulars]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="2ddb278f-9e13-4332-b859-5643d8b47aae" x="132" y="0" width="235" height="21"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{subledger}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="86280d2d-1012-4d73-bce6-5ba8fef202eb" x="367" y="0" width="90" height="21"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fee}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band height="117" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="52866d4d-1ef9-404e-8f01-9d2ab01153e9" x="132" y="0" width="235" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Paid   ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="76b094d1-f714-4793-9fb2-d0d4f7c4b70c" x="144" y="64" width="100" height="19"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PendingFees}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="52866d4d-1ef9-404e-8f01-9d2ab01153e9" x="10" y="43" width="134" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Paid Fees:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9cc64618-f901-4fc5-a54d-8cc43a95c124" x="144" y="43" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{AlreadyPaidFees}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="48be2ecd-0e87-4c0b-9bd3-6fe8bbbe41f8" x="10" y="64" width="134" height="20"/>
+				<box rightPadding="5">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pending Fees :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b0ab851d-d4c1-4af9-a15e-bc1ea4d5a104" x="367" y="102" width="186" height="15"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Authorized Signature]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b3d0a84e-e32a-46de-a18b-c28201deb86d" x="367" y="0" width="90" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{totalFee}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Catalogue(TitleWise)" language="groovy" pageWidth="975" pageHeight="595" orientation="Landscape" columnWidth="935" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f9db1f1e-6480-4c66-9983-708b6d044c87">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="banner" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT s.StaffMeetingNoticeID,sr.SatffDepartment,sr.StaffName,smn.StaffNotice,smn.StaffNoticeDate,smn.StaffType
+FROM staffmeetingnoticeentery s
+left join staffregistration sr on sr.staffRegistrationId=s.staffRegistrationId
+left join staffmeetingnotice smn on smn.StaffMeetingNoticeID=s.StaffMeetingNoticeID]]>
+	</queryString>
+	<field name="StaffMeetingNoticeID" class="java.lang.Integer"/>
+	<field name="SatffDepartment" class="java.lang.String"/>
+	<field name="StaffName" class="java.lang.String"/>
+	<field name="StaffNotice" class="java.lang.String"/>
+	<field name="StaffNoticeDate" class="java.lang.String"/>
+	<field name="StaffType" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="123" splitType="Stretch">
+			<image>
+				<reportElement uuid="46d6f4fb-848b-494a-bd1f-11c6cbe433a8" x="118" y="0" width="759" height="123"/>
+				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="61438e0e-afd3-4a47-a84f-3d75b7528bfb" x="290" y="1" width="323" height="47"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Student Meeting Notice Report]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3d4cfda1-3803-4677-9ecc-a2f46c16ece3" x="409" y="31" width="274" height="30"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Notice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e7b0a32-8afc-4dd9-b1d0-26bbf7ee7ec2" x="172" y="31" width="137" height="30"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Notice Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e7b0a32-8afc-4dd9-b1d0-26bbf7ee7ec2" x="309" y="31" width="100" height="30"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Name]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="ac70cbb5-ea78-4b31-878b-4888d2ade38c" x="0" y="0" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="9e7b0a32-8afc-4dd9-b1d0-26bbf7ee7ec2" x="0" y="31" width="172" height="30"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Meeting Notice ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e7b0a32-8afc-4dd9-b1d0-26bbf7ee7ec2" x="683" y="31" width="100" height="30"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Staff Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e7b0a32-8afc-4dd9-b1d0-26bbf7ee7ec2" x="783" y="31" width="152" height="30"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Department Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="198d41fb-bb90-43ef-b5cf-9f8612fad86d" x="409" y="0" width="274" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{StaffNotice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="544ff22a-7be7-4777-a58d-2dd79ac8c1e5" x="0" y="0" width="172" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{StaffMeetingNoticeID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f09f2e58-1e1a-4d88-861f-a566a05dc306" x="172" y="0" width="137" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{StaffNoticeDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="14a7317f-86d4-495c-9d1a-1b99f5a55757" x="308" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{StaffName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="198d41fb-bb90-43ef-b5cf-9f8612fad86d" x="683" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{StaffType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="198d41fb-bb90-43ef-b5cf-9f8612fad86d" x="783" y="0" width="152" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SatffDepartment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,191 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/jee
+         http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang
+         http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util
+         http://www.springframework.org/schema/util/spring-util.xsd
+          http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<context:component-scan base-package="com.account.controller" />
+	<context:component-scan base-package="com.account.dao" />
+	<context:component-scan base-package="com.account.service" />
+	<context:component-scan base-package="com.account.daoInterfce" />
+	<context:component-scan base-package="com.account.ServiceClass" />
+	<context:component-scan base-package="com.account.serviceInterface" />
+
+
+	<context:component-scan base-package="com.student.controller" />
+	<context:component-scan base-package="com.student.dao" />
+	<context:component-scan base-package="com.student.service" />
+	<context:component-scan base-package="com.student.daoInterface" />
+	<context:component-scan base-package="com.student.serviceIntrface" />
+
+	<context:component-scan base-package="com.controller" />
+
+	<context:component-scan base-package="com.admin.dao" />
+	<context:component-scan base-package="com.admin.service" />
+
+	<context:component-scan base-package="com.administrator.controller" />
+	<context:component-scan base-package="com.administrator.dao" />
+	<context:component-scan base-package="com.administrator.daoInterface" />
+	<context:component-scan base-package="com.administrator.service" />
+	<context:component-scan base-package="com.administrator.serviceInterface" />
+
+	<context:component-scan base-package="com.HOD.controller" />
+	<context:component-scan base-package="com.HOD.dao" />
+	<context:component-scan base-package="com.HOD.daoInterface" />
+	<context:component-scan base-package="com.HOD.service" />
+	<context:component-scan base-package="com.HOD.serviceInterface" />
+
+	<context:component-scan base-package="com.library.controller" />
+	<context:component-scan base-package="com.library.dao" />
+	<context:component-scan base-package="com.library.daoInterface" />
+	<context:component-scan base-package="com.library.service" />
+	<context:component-scan base-package="com.library.serviceInterface" />
+	
+	<context:component-scan base-package="com.NSS.controller" />
+	<context:component-scan base-package="com.NSS.dao" />
+	<context:component-scan base-package="com.NSS.daoInterface" />
+	<context:component-scan base-package="com.NSS.service" />
+	<context:component-scan base-package="com.NSS.serviceInterface" />
+
+	<context:component-scan base-package="com.Department.controller"/>
+	<context:component-scan base-package="com.Department.dao" />
+	<context:component-scan base-package="com.Department.daoInterface" />
+	<context:component-scan base-package="com.Department.service" />
+	<context:component-scan base-package="com.Department.serviceInterface" />
+	
+	<context:component-scan base-package="com.Exam.controller"/>
+	<context:component-scan base-package="com.Exam.dao" />
+	<context:component-scan base-package="com.Exam.daoInterface" />
+	<context:component-scan base-package="com.Exam.service" />
+	<context:component-scan base-package="com.Exam.serviceInterface" />
+
+	<context:component-scan base-package="com.Alumini.controller"/>
+	<context:component-scan base-package="com.Alumini.dao" />
+	<context:component-scan base-package="com.Alumini.daoInterface" />
+	<context:component-scan base-package="com.Alumini.service" />
+	<context:component-scan base-package="com.Alumini.serviceInterface" />
+
+	<context:component-scan base-package="com.cultural.controller"/>
+	<context:component-scan base-package="com.cultural.dao" />
+	<context:component-scan base-package="com.cultural.daoInterface" />
+	<context:component-scan base-package="com.cultural.service" />
+	<context:component-scan base-package="com.cultural.serviceInterface" />
+
+	<context:component-scan base-package="com.staff.controller"/>
+	<context:component-scan base-package="com.staff.dao" />
+	<context:component-scan base-package="com.staff.daoInterface" />
+	<context:component-scan base-package="com.staff.service" />
+	<context:component-scan base-package="com.staff.serviceInterface" />
+	
+	<context:component-scan base-package="com.AcademicMaster.Controller"/>
+	<context:component-scan base-package="com.AcademicMaster.dao" />
+	<context:component-scan base-package="com.AcademicMaster.daoInterface" />
+	<context:component-scan base-package="com.AcademicMaster.service" />
+	<context:component-scan base-package="com.AcademicMaster.serviceInterface" />
+	
+	<context:component-scan base-package="com.TAP.controller"/>
+	<context:component-scan base-package="com.TAP.dao" />
+	<context:component-scan base-package="com.TAP.daoInterface" />
+	<context:component-scan base-package="com.TAP.service" />
+	<context:component-scan base-package="com.TAP.serviceInterface" />
+	
+	<context:component-scan base-package="com.webService.Controller"/>
+	<context:component-scan base-package="com.webService.dao" />
+	<context:component-scan base-package="com.webService.daoInterface" />
+	<context:component-scan base-package="com.webService.service" />
+	<context:component-scan base-package="com.webService.serviceInterface" />
+	
+	<bean id="ledgerFeePaidModel" class="com.account.model.LedgerFeePaidModel" />
+	<bean id="transactionDetailsModel" class="com.account.model.TransactionDetailsModel" />
+	<bean id="DiscountModel" class="com.account.model.discountModel" />
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass">
+			<value>
+				org.springframework.web.servlet.view.tiles2.TilesView
+			</value>
+		</property>
+	</bean>
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/collegemgmtsystem" />
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="" />
+		<property name="password" value="" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="jacksonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jacksonMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+</beans>  

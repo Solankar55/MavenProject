@@ -1,0 +1,173 @@
+package com.staff.dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.hibernate.SQLQuery;
+import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.HOD.model.AssignClassInchargeModel;
+import com.HOD.model.StaffRegistrationModel;
+import com.staff.daoInterface.StaffClassInChargeDaoInterface;
+
+@Repository
+public class StaffClassInChargeDaoClass implements StaffClassInChargeDaoInterface{
+
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public List<StaffRegistrationModel> getStaffList(String username) {
+		// TODO Auto-generated method stub
+		List<StaffRegistrationModel> DataList = new ArrayList<>();
+
+		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
+				"SELECT s.staffRegistrationId,s.MobileNumber, s.Password,s.Qalification, s.SatffDepartment,s.StaffAddress, s.StaffEmail, s.StaffName, s.StaffRegDate, s.StaffType,s.UserName, s.YearOfExperience, s.barcode FROM staffregistration s where s.UserName='"
+						+ username + "'");
+		query.setResultTransformer(Transformers.aliasToBean(StaffRegistrationModel.class));
+
+		DataList = query.list();
+
+		return DataList;
+	}
+
+	@Override
+	public List<String> CheckClassInchargeOrNot(int staffID) {
+		// TODO Auto-generated method stub
+		List<String> CheckList = new ArrayList<>();
+
+		SQLQuery query = sessionFactory.getCurrentSession()
+				.createSQLQuery("SELECT a.acadamicYearId, a.branchId, a.standardId, a.streamId FROM assignclassincharge a where a.staffRegistrationId='"+staffID+"'");
+		query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+
+		CheckList = query.list();
+
+		return CheckList;
+	}
+
+	@Override
+	public HashMap<String, String> GetYearList(int staffID) {
+		// TODO Auto-generated method stub
+		List<HashMap> list=new ArrayList<>();
+		HashMap mapOfAcadimicYear = new HashMap();
+		SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery("SELECT DISTINCT a.acadamicYearId,y.acadamicYear FROM assignclassincharge a left join acadamicyear y on y.acadamicYearId=a.acadamicYearId where a.staffRegistrationId='"+staffID+"'");
+		query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		list=query.list();
+		
+		for(HashMap map :list){
+
+			mapOfAcadimicYear.put( map.get("acadamicYearId"),map.get("acadamicYear"));
+
+		}
+		return mapOfAcadimicYear;
+	}
+
+	@Override
+	public HashMap<String, String> GetStreamList(int staffID) {
+		// TODO Auto-generated method stub
+		List<HashMap> list=new ArrayList<>();
+		HashMap mapOfStreamYear = new HashMap();
+		SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery("SELECT DISTINCT a.streamId,y.streamName FROM assignclassincharge a left join streammaster y on y.streamId=a.streamId  where a.staffRegistrationId='"+staffID+"'");
+		query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		list=query.list();
+		
+		for(HashMap map :list){
+
+			mapOfStreamYear.put( map.get("streamId"),map.get("streamName"));
+
+		}
+		return mapOfStreamYear;
+	}
+
+	@Override
+	public HashMap<String, String> GetBranchlist(int staffID) {
+		// TODO Auto-generated method stub
+		List<HashMap> list=new ArrayList<>();
+		HashMap mapOfBranchYear = new HashMap();
+		SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery("SELECT DISTINCT a.branchId,y.branchName FROM assignclassincharge a left join branchmaster y on y.branchId=a.branchId where a.staffRegistrationId='"+staffID+"'");
+		query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		list=query.list();
+		
+		for(HashMap map :list){
+
+			mapOfBranchYear.put( map.get("branchId"),map.get("branchName"));
+
+		}
+		return mapOfBranchYear;
+	}
+
+	@Override
+	public HashMap<String, String> GetStandardList(int staffID) {
+		// TODO Auto-generated method stub
+		List<HashMap> list=new ArrayList<>();
+		HashMap mapOfStandardYear = new HashMap();
+		SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery("SELECT DISTINCT a.standardId,y.standard FROM assignclassincharge a left join standardmaster y on y.standardId=a.standardId  where a.staffRegistrationId='"+staffID+"'");
+		query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		list=query.list();
+		
+		for(HashMap map :list){
+
+			mapOfStandardYear.put( map.get("standardId"),map.get("standard"));
+
+		}
+		return mapOfStandardYear;
+	}
+
+	@Override
+	public List<String> getStudentList(int yearID, int streamID, int branchID, int standardID) {
+		// TODO Auto-generated method stub
+		List<String> getStudentList=new ArrayList<>();
+		SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery("SELECT s.admissionRegId,s.studentFirstName,s.studentLastName,a.acadamicYear,stream.streamName,stand.standard,branch.branchName FROM studentadmission s left join acadamicyear a on a.acadamicYearId=s.acadamicYearId left join streammaster stream on stream.streamId=s.streamId left join standardmaster stand on stand.standardId=s.standardId left join branchmaster branch on branch.branchId=s.branchId where s.status='Approved' and  s.acadamicYearId='"+yearID+"' and s.branchId='"+branchID+"' and s.standardId='"+standardID+"' and s.streamId='"+streamID+"'");
+		query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		
+		getStudentList=query.list();
+		
+		return getStudentList;
+	}
+
+	@Override
+	public List<Object[]> getPresentClassInchargeDetails(int staffID) {
+		// TODO Auto-generated method stub
+		List<Object[]> StaffIds;
+		SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery("SELECT a.AssignClassInchargeId,a.acadamicYearId,a.branchId, a.standardId,a.streamId FROM assignclassincharge a where a.staffRegistrationId='"+staffID+"'");
+		StaffIds=query.list();
+		return StaffIds;
+	}
+
+	@Override
+	public List<String> getStudentAbsentList(Integer yearID, Integer streamID, Integer branchID, Integer standardID) {
+		// TODO Auto-generated method stub
+		SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery("SELECT stud.admissionRegId, s.CurrentDate, s.LectEndTimeDate, s.LectStartTimeDate, s.NumberOfLect,studAd.studentFirstName,studAd.studentLastName,staff.StaffName,subm.SubjectName FROM studentattendance s left join studententeryofattendance stud on stud.AttendanceID=s.AttendanceID left join assignsubjectteacher a on a.SubjectID=s.SubjectID left join staffregistration staff on staff.staffRegistrationId=a.staffRegistrationId left join subjectmasterhod subm on subm.SubjectID=s.SubjectID left join studentadmission studAd on studAd.admissionRegId=stud.admissionRegId where s.acadamicYearId='"+yearID+"' and s.branchId='"+branchID+"' and s.standardId='"+standardID+"' and s.streamId='"+streamID+"' and studAd.status='Approved'");
+		query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		query.list();
+		
+		List<String> studentList;
+		studentList=query.list();
+		
+		return studentList;
+	}
+
+	@Override
+	public List<String> getStudentPresentList(Integer yearID, Integer branchID, Integer standardID, Integer streamID) {
+		// TODO Auto-generated method stub
+		List<String> StudentPresentList;
+		SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery("");
+		query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		StudentPresentList=query.list();
+		return StudentPresentList;
+	}
+	
+	
+}
