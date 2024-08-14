@@ -20,7 +20,7 @@ public class ArrayOpration {
 			}
 		}
 		for (int c : b) {
-			System.out.println(c);
+			System.out.println("Hello buddy"+c);
 		}
 	}
 
