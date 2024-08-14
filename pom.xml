@@ -769,6 +769,16 @@
       <encoding>UTF-8</encoding>
     </configuration>
   </plugin>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.0.0-MS</version>
+    <configuration>
+      <suiteXmlFiles>
+<suiteXmlFile>testing.xml</suiteXmlFile>
+</suiteXmlFiles>
+    </configuration>
+  </plugin>
     </plugins>
   </build>
 </project>
