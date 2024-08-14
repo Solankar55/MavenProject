@@ -7,6 +7,12 @@
   <artifactId>CollegeManagementSystem</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  <repositories>
+  <repository>
+    <id>jaspersoft-third-party</id>
+    <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+  </repository>
+</repositories>
   <dependencies>
   <dependency>
 	<groupId>net.sf.jasperreports</groupId>
@@ -356,19 +362,9 @@
 	<version>2.2.2</version>
 </dependency>
 <dependency>
-	<groupId>net.sf.jasperreports</groupId>
-	<artifactId>jasperreports-fonts</artifactId>
-	<version>6.0.0</version>
-</dependency>
-<dependency>
 	<groupId>javax.validation</groupId>
 	<artifactId>validation-api</artifactId>
 	<version>1.0.0.GA</version>
-</dependency>
-<dependency>
-	<groupId>net.sf.jasperreports</groupId>
-	<artifactId>jasperreports</artifactId>
-	<version>6.1.0</version>
 </dependency>
 <dependency>
 	<groupId>org.codehaus.groovy</groupId>
@@ -673,21 +669,7 @@
 	<artifactId>tiles-servlet-wildcard</artifactId>
 	<version>2.2.2</version>
 </dependency>
-<dependency>
-	<groupId>net.sf.jasperreports</groupId>
-	<artifactId>jasperreports-fonts</artifactId>
-	<version>6.0.0</version>
-</dependency>
-<dependency>
-	<groupId>javax.validation</groupId>
-	<artifactId>validation-api</artifactId>
-	<version>1.0.0.GA</version>
-</dependency>
-<dependency>
-	<groupId>net.sf.jasperreports</groupId>
-	<artifactId>jasperreports</artifactId>
-	<version>6.1.0</version>
-</dependency>
+
 <dependency>
 	<groupId>org.codehaus.groovy</groupId>
 	<artifactId>groovy</artifactId>
@@ -737,6 +719,13 @@
 	<artifactId>velocity-tools</artifactId>
 	<version>2.0</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
+<dependency>
+    <groupId>com.lowagie</groupId>
+    <artifactId>itext</artifactId>
+    <version>2.1.7</version>
+</dependency>
+
 <dependency>
     <groupId>net.sourceforge.barbecue</groupId>
     <artifactId>barbecue</artifactId>
