@@ -3,7 +3,6 @@ package com.account.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jws.Oneway;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
