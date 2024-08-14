@@ -27,7 +27,7 @@ public class PrintJasperReport {
 	private static JasperReport getCompiledFile(String fileName, HttpServletRequest request) throws JRException
 	{
 	    File reportFile = new File( request.getSession().getServletContext().getRealPath("/report/" + fileName + ".jasper"));
-	    // If compiled file is not found, then compile XML template
+	    // If compiled
 	    //JasperCompileManager.compileReportToFile(request.getSession().getServletContext().getRealPath("/report/" + fileName + ".jrxml"),request.getSession().getServletContext().getRealPath("/report/" + fileName + ".jasper"));
 	    JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile.getPath());
 	    return jasperReport;
